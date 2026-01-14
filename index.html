@@ -3,73 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Portfolio</title>
+    <title>Yogesh | Systems & Security Engineer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* Basic Styling */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; color: #333; background: #f4f4f4; }
-        header { background: #2c3e50; color: #fff; padding: 1rem 0; text-align: center; position: sticky; top: 0; }
-        .container { width: 80%; margin: auto; overflow: hidden; padding: 20px; }
-        
-        /* Profile Section */
-        #showcase { background: #fff; padding: 50px 0; text-align: center; border-bottom: 3px solid #3498db; }
-        #showcase h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        
-        /* Projects Grid */
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-        .card { background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .card h3 { margin-top: 0; color: #3498db; }
-        
-        /* Footer */
-        footer { background: #2c3e50; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
-        a { color: #3498db; text-decoration: none; }
+        :root {
+            --bg: #0b0e14;
+            --card-bg: #151921;
+            --accent: #00ff9d; /* Matrix/Security Green */
+            --blue: #58a6ff;
+            --text: #e6edf3;
+            --text-dim: #8b949e;
+            --border: #30363d;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-mono);
+            line-height: 1.6;
+            padding: 40px 10px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 30px;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .photo-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            padding: 5px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #21262d;
+            object-fit: cover;
+        }
+
+        .name { font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; color: #fff; }
+        .username { color: var(--accent); font-size: 0.9rem; margin-bottom: 20px; display: block; }
+
+        .btn-stack { display: flex; flex-direction: column; gap: 10px; }
+        .btn {
+            text-decoration: none;
+            color: var(--text);
+            background: #21262d;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn:hover {
+            border-color: var(--accent);
+            background: rgba(0, 255, 157, 0.1);
+            color: var(--accent);
+        }
+
+        /* --- Main Content --- */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Terminal Styles */
+        .terminal {
+            background: #010409;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .terminal-header {
+            background: #161b22;
+            padding: 10px 15px;
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 25px;
+            min-height: 200px;
+        }
+
+        .command-line { color: var(--accent); margin-bottom: 10px; }
+        .command-line::before { content: "yogesh@root:~$ "; }
+
+        .type-wrap { font-size: 1.4rem; font-weight: bold; margin-bottom: 15px; display: block; }
+
+        /* Sections */
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px dotted var(--border);
+            padding-bottom: 5px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+        .card:hover { border-color: var(--blue); transform: translateY(-3px); }
+
+        .card h3 { font-size: 1rem; margin-bottom: 10px; color: var(--blue); }
+        .card p { font-size: 0.85rem; color: var(--text-dim); }
+
+        .tag-list {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            background: #21262d;
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        /* Skills Pill */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill-pill {
+            background: #010409;
+            border: 1px solid var(--border);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--blue);
+        }
+
+        @media (max-width: 850px) {
+            .container { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1>Welcome to My Site</h1>
+<div class="container">
+    <aside class="sidebar">
+        <div class="profile-card">
+            <div class="photo-container">
+                <img src="https://ui-avatars.com/api/?name=Yogesh&background=0D8ABC&color=fff&size=300" alt="Yogesh" class="profile-photo">
+            </div>
+            <h1 class="name">Yogesh</h1>
+            <span class="username">@mafiatamilan</span>
+            
+            <div class="btn-stack">
+                <a href="https://github.com/mafiatamilan" target="_blank" class="btn">
+                    <i class="fab fa-github"></i> github.com/mafiatamilan
+                </a>
+                <a href="https://www.linkedin.com/in/yogeshwaran-t1337/" target="_blank" class="btn">
+                    <i class="fab fa-linkedin"></i> LinkedIn Profile
+                </a>
+                <a href="mailto:contact@yogesh.dev" class="btn">
+                    <i class="fas fa-terminal"></i> Send Message
+                </a>
+            </div>
         </div>
-    </header>
 
-    <section id="showcase">
-        <div class="container">
-            <h1>Hi, I'm [Your Name]</h1>
-            <p>Software Developer | Designer | Tech Enthusiast</p>
+        <div class="profile-card" style="text-align: left;">
+            <h3 class="section-title" style="font-size: 0.9rem;">System Stats</h3>
+            <p style="font-size: 0.8rem; margin-bottom: 5px;">OS: <span style="color: var(--accent);">Arch Linux</span></p>
+            <p style="font-size: 0.8rem; margin-bottom: 5px;">Uptime: <span id="uptime"></span></p>
+            <p style="font-size: 0.8rem;">Shell: <span style="color: var(--accent);">Zsh</span></p>
         </div>
-    </section>
+    </aside>
 
-    <div class="container">
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Write a brief introduction about who you are, what you study, or what you're passionate about. This is your chance to make a great first impression!</p>
+    <main class="main-content">
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+            </div>
+            <div class="terminal-body">
+                <p class="command-line">cat intro.txt</p>
+                <span class="type-wrap">I am <span id="typewriter" style="color: var(--blue);"></span></span>
+                <p style="color: var(--text-dim); margin-top: 10px;">
+                    Specialized in low-level development, kernel internals, and advanced penetration testing. 
+                    Building secure bridges between hardware and software.
+                </p>
+            </div>
+        </div>
+
+        <section>
+            <h2 class="section-title"><i class="fas fa-microchip"></i> Technical Stack</h2>
+            <div class="skills-container">
+                <span class="skill-pill">C / C++</span>
+                <span class="skill-pill">Assembly (x86/ARM)</span>
+                <span class="skill-pill">Linux Kernel</span>
+                <span class="skill-pill">Android Internals</span>
+                <span class="skill-pill">Metasploit</span>
+                <span class="skill-pill">Burp Suite</span>
+                <span class="skill-pill">Reverse Engineering</span>
+                <span class="skill-pill">GDB/LLDB</span>
+                <span class="skill-pill">Python (Exploit Dev)</span>
+            </div>
         </section>
 
-        <section id="projects">
-            <h2>My Projects</h2>
-            <div class="project-grid">
+        <section>
+            <h2 class="section-title"><i class="fas fa-code-branch"></i> Featured Repositories</h2>
+            <div class="grid-2">
                 <div class="card">
-                    <h3>Project One</h3>
-                    <p>A brief description of a cool project you built using HTML, CSS, or Python.</p>
-                    <a href="#">View Code</a>
+                    <h3>Kernel Module Exploits</h3>
+                    <p>Research on Linux kernel memory management vulnerabilities and mitigation bypasses.</p>
+                    <div class="tag-list">
+                        <span class="tag">C</span>
+                        <span class="tag">Kernel</span>
+                        <span class="tag">Exploit</span>
+                    </div>
                 </div>
                 <div class="card">
-                    <h3>Project Two</h3>
-                    <p>Description of another awesome piece of work you've completed.</p>
-                    <a href="#">View Code</a>
+                    <h3>Android Rootkit Research</h3>
+                    <p>POC for persistence at the system level on modern Android partitions.</p>
+                    <div class="tag-list">
+                        <span class="tag">ARM</span>
+                        <span class="tag">Android</span>
+                        <span class="tag">Security</span>
+                    </div>
                 </div>
                 <div class="card">
-                    <h3>Project Three</h3>
-                    <p>Maybe a link to a live demo or a YouTube walkthrough.</p>
-                    <a href="#">View Code</a>
+                    <h3>Web Pen-Test Suite</h3>
+                    <p>Automated reconnaissance scripts for bug bounty hunting workflows.</p>
+                    <div class="tag-list">
+                        <span class="tag">Python</span>
+                        <span class="tag">Web</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Custom Driver Dev</h3>
+                    <p>Experimental drivers for I/O monitoring and system hardening.</p>
+                    <div class="tag-list">
+                        <span class="tag">C++</span>
+                        <span class="tag">Drivers</span>
+                    </div>
                 </div>
             </div>
         </section>
-    </div>
+    </main>
+</div>
 
-    <footer>
-        <p>Connect with me on <a href="https://github.com/[YourUsername]">GitHub</a> | &copy; 2026</p>
-    </footer>
+<script>
+    // Typewriter
+    const roles = [
+        "a Kernel Developer.",
+        "a Cyber Security Engineer.",
+        "an Android Internals Expert.",
+        "a Web Pentester.",
+        "a Low-Level Enthusiast."
+    ];
+    let i = 0, j = 0, isDeleting = false;
+    function type() {
+        const current = roles[i];
+        document.getElementById("typewriter").textContent = isDeleting ? current.substring(0, j--) : current.substring(0, j++);
+        if (!isDeleting && j > current.length) { isDeleting = true; setTimeout(type, 2000); }
+        else if (isDeleting && j === 0) { isDeleting = false; i = (i + 1) % roles.length; setTimeout(type, 500); }
+        else { setTimeout(type, isDeleting ? 40 : 80); }
+    }
 
+    // Uptime
+    function updateUptime() {
+        const start = new Date("2021-06-15"); // Change this to your start date
+        const diff = Math.floor((new Date() - start) / 1000);
+        const d = Math.floor(diff / 86400);
+        const h = Math.floor((diff % 86400) / 3600);
+        document.getElementById("uptime").textContent = `${d}d ${h}h`;
+    }
+
+    window.onload = () => { type(); updateUptime(); setInterval(updateUptime, 60000); };
+</script>
 </body>
 </html>
